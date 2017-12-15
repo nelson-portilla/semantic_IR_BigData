@@ -27,7 +27,7 @@
     <maven.compiler.target>1.6</maven.compiler.target>
     <encoding>UTF-8</encoding>
     <scala.version>2.12.2</scala.version>
-    <scala.compat.version>2.11</scala.compat.version>
+    <!--<scala.compat.version>2.11</scala.compat.version>-->
     <elastic4sVersion>5.4.2</elastic4sVersion>
   </properties>
 
@@ -90,13 +90,26 @@
       <version>2.2.0</version>
     </dependency>
 
+
     <dependency>
       <groupId>com.sksamuel.elastic4s</groupId>
       <artifactId>elastic4s-tcp_2.12</artifactId>
       <version>${elastic4sVersion}</version>
     </dependency>
 
+    <dependency>
+      <groupId>com.sksamuel.elastic4s</groupId>
+      <artifactId>elastic4s-http_2.12</artifactId>
+      <version>${elastic4sVersion}</version>
+    </dependency>
+
+
     <!--
+    <dependency>
+      <groupId>org.elasticsearch</groupId>
+      <artifactId>elasticsearch</artifactId>
+      <version>2.4.1</version>
+    </dependency>
     <dependency>
       <groupId>com.sksamuel.elastic4s</groupId>
       <artifactId>elastic4s-testkit_2.12</artifactId>
@@ -140,13 +153,13 @@
 
   <build>
     <sourceDirectory>src/main/scala</sourceDirectory>
-    <testSourceDirectory>src/test/scala</testSourceDirectory>
+    <!--<testSourceDirectory>src/test/scala</testSourceDirectory>-->
     <plugins>
       <plugin>
         <!-- see http://davidb.github.com/scala-maven-plugin -->
         <groupId>net.alchim31.maven</groupId>
         <artifactId>scala-maven-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>3.2.1</version>
         <executions>
           <execution>
             <goals>
@@ -155,6 +168,7 @@
             </goals>
             <configuration>
               <args>
+                <arg>-nobootcp</arg>
                 <arg>-dependencyfile</arg>
                 <arg>${project.build.directory}/.scala_dependencies</arg>
               </args>
@@ -172,7 +186,7 @@
           <!-- If you have classpath issue like NoDefClassError,... -->
           <!-- useManifestOnlyJar>false</useManifestOnlyJar -->
           <includes>
-            <include>**/*Test.*</include>
+            <!--<include>**/*Test.*</include>-->
             <include>**/*Suite.*</include>
           </includes>
         </configuration>

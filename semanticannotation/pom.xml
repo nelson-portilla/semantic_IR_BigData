@@ -91,17 +91,17 @@
     </dependency>
 
 
-    <dependency>
-      <groupId>com.sksamuel.elastic4s</groupId>
-      <artifactId>elastic4s-tcp_2.12</artifactId>
-      <version>${elastic4sVersion}</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>com.sksamuel.elastic4s</groupId>-->
+      <!--<artifactId>elastic4s-tcp_2.12</artifactId>-->
+      <!--<version>${elastic4sVersion}</version>-->
+    <!--</dependency>-->
 
-    <dependency>
-      <groupId>com.sksamuel.elastic4s</groupId>
-      <artifactId>elastic4s-http_2.12</artifactId>
-      <version>${elastic4sVersion}</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>com.sksamuel.elastic4s</groupId>-->
+      <!--<artifactId>elastic4s-http_2.12</artifactId>-->
+      <!--<version>${elastic4sVersion}</version>-->
+    <!--</dependency>-->
 
 
     <!--
@@ -155,27 +155,27 @@
     <sourceDirectory>src/main/scala</sourceDirectory>
     <!--<testSourceDirectory>src/test/scala</testSourceDirectory>-->
     <plugins>
-      <plugin>
-        <!-- see http://davidb.github.com/scala-maven-plugin -->
-        <groupId>net.alchim31.maven</groupId>
-        <artifactId>scala-maven-plugin</artifactId>
-        <version>3.2.1</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>compile</goal>
-              <goal>testCompile</goal>
-            </goals>
-            <configuration>
-              <args>
-                <!--<arg>-nobootcp</arg>-->
-                <arg>-dependencyfile</arg>
-                <arg>${project.build.directory}/.scala_dependencies</arg>
-              </args>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
+      <!--<plugin>-->
+        <!--&lt;!&ndash; see http://davidb.github.com/scala-maven-plugin &ndash;&gt;-->
+        <!--<groupId>net.alchim31.maven</groupId>-->
+        <!--<artifactId>scala-maven-plugin</artifactId>-->
+        <!--<version>3.2.1</version>-->
+        <!--<executions>-->
+          <!--<execution>-->
+            <!--<goals>-->
+              <!--<goal>compile</goal>-->
+              <!--<goal>testCompile</goal>-->
+            <!--</goals>-->
+            <!--<configuration>-->
+              <!--<args>-->
+                <!--&lt;!&ndash;<arg>-nobootcp</arg>&ndash;&gt;-->
+                <!--<arg>-dependencyfile</arg>-->
+                <!--<arg>${project.build.directory}/.scala_dependencies</arg>-->
+              <!--</args>-->
+            <!--</configuration>-->
+          <!--</execution>-->
+        <!--</executions>-->
+      <!--</plugin>-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -190,6 +190,29 @@
             <include>**/*Suite.*</include>
           </includes>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <archive>
+            <manifest>
+              <mainClass>edu.univalle.eisc.HelloWorld</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
